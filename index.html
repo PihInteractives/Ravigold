@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gold Smith Business</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <img src="logo.png" alt="Gold Smith Business Logo">
+      <h1>Ravi Gold</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#">Vaati</a></li>
+        <li><a href="#">Capsule</a></li>
+        <li><a href="#">Maani</a></li>
+        <li><a href="#">Chappai</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Home Page -->
+  <main>
+    <div class="container">
+      <div class="product-column">
+        <div class="product">
+          <p>Design No. 001</p>
+          <img src="product1.jpg" alt="Product 1">
+          <p class="size">Size: 10mm</p>
+        </div>
+        <!-- Add to Cart button -->
+        <button class="add-to-cart">Add to Cart</button>
+      </div>
+      <!-- Duplicate the product column for other products -->
+      <div class="product-column">
+        <div class="product">
+          <p>Design No. 002</p>
+          <img src="product2.jpg" alt="Product 2">
+          <p class="size">Size: 15mm</p>
+        </div>
+        <!-- Add to Cart button -->
+        <button class="add-to-cart">Add to Cart</button>
+      </div>
+      <!-- Repeat product-columns for other products -->
+      <div class="product-column">
+        <div class="product">
+          <p>Design No. 003</p>
+          <img src="product2.jpg" alt="Product 2">
+          <p class="size">Size: 15mm</p>
+        </div>
+        <!-- Add to Cart button -->
+        <button class="add-to-cart">Add to Cart</button>
+      </div>
+      <!---->
+      <div class="product-column">
+        <div class="product">
+          <p>Design No. 004</p>
+          <img src="product2.jpg" alt="Product 2">
+          <p class="size">Size: 15mm</p>
+        </div>
+        <!-- Add to Cart button -->
+        <button class="add-to-cart">Add to Cart</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Cart Page -->
+  <div class="cart-page">
+    <h2>Cart</h2>
+    <div class="cart-items">
+      <!-- Cart items dynamically added here -->
+    </div>
+    <div class="grand-total">
+      <p>Grand Total: <span id="total-amount">0</span> rupees</p>
+      <button id="download-btn">Download Screenshot</button>
+    </div>
+  </div>
+
+
+  <script src="scripts.js"></script>
+</body>
+
+</html>
