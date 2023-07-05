@@ -131,18 +131,19 @@ function updateCartItemTotal(e) {
   const priceElement = cartItem.querySelector('.price');
   const totalElement = cartItem.querySelector('.total');
   const price = parseFloat(priceElement.textContent.split(' ')[2]); // Extract the price from the text
-  const total = price * quantity;
 
-  if (!isNaN(price) && !isNaN(quantity) && !isNaN(total)) {
-    priceElement.textContent = `1 Pc: ${price} rs`;
-    totalElement.textContent = `${total} rs`;
-  } else {
-    priceElement.textContent = 'Invalid price';
+  if (isNaN(quantity) || quantity < 0) {
     totalElement.textContent = 'Invalid total';
+  } else if (quantity === 0) {
+    totalElement.textContent = '0 rs';
+  } else {
+    const total = price * quantity;
+    totalElement.textContent = `${total} rs`;
   }
 
   calculateCartTotal();
 }
+
 
 
 
