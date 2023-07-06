@@ -193,16 +193,52 @@ function calculateCartTotal() {
 downloadButton.addEventListener('click', downloadScreenshot);
 
 function downloadScreenshot() {
-  const cartScreenshot = document.querySelector('.cart-page').outerHTML;
+  const cartPage = document.querySelector('.cart-page');
+
+  // Generate the filename with timestamp
   const dateTime = new Date().toLocaleString('en-IN', {
     timeZone: 'Asia/Kolkata',
+    hour: 'numeric',
+    minute: 'numeric',
   });
-  const filename = `Cart_Screenshot_${dateTime}.html`;
-  const element = document.createElement('a');
-  element.setAttribute('href', 'data:text/html;charset=utf-8,' + encodeURIComponent(cartScreenshot));
-  element.setAttribute('download', filename);
-  element.style.display = 'none';
-  document.body.appendChild(element);
-  element.click();
-  document.body.removeChild(element);
+  const filename = `Cart_Screenshot_${dateTime.replace(/:/g, '')}.jpeg`; // Change the extension to .jpeg
+
+  // Add the "Ravi Gold works" heading and timestamp to the cart page
+  const headingElement = document.createElement('h2');
+  headingElement.textContent = 'Ravi Gold works';
+  cartPage.insertBefore(headingElement, cartPage.firstChild);
+
+  const timestampElement = document.createElement('p');
+  timestampElement.textContent = dateTime;
+  cartPage.insertBefore(timestampElement, cartPage.firstChild);
+
+  // Use html2canvas to capture the cart page as an image
+  html2canvas(cartPage)
+    .then((canvas) => {
+      // Convert the canvas to a data URL
+      const dataURL = canvas.toDataURL('image/jpeg');
+
+      // Create a download link and initiate the download
+      const element = document.createElement('a');
+      element.setAttribute('href', dataURL);
+      element.setAttribute('download', filename);
+      element.style.display = 'none';
+      document.body.appendChild(element);
+      element.click();
+      document.body.removeChild(element);
+
+      // Remove the "Ravi Gold works" heading and timestamp from the cart page
+      cartPage.removeChild(headingElement);
+      cartPage.removeChild(timestampElement);
+    })
+    .catch((error) => {
+      console.log('Screenshot capture error:', error);
+    });
 }
+
+
+
+
+//const dateTime = new Date().toLocaleString('en-IN', {
+ // timeZone: 'Asia/Kolkata',
+//});
