@@ -143,6 +143,34 @@ function updateCartItemTotal(e) {
 
   calculateCartTotal();
 }
+// Refresh button functionality
+const refreshButton = document.getElementById('refresh-btn');
+refreshButton.addEventListener('click', refreshCartPrices);
+
+function refreshCartPrices() {
+  // Get all cart items
+  const cartItems = Array.from(cartItemsContainer.children);
+
+  // Iterate through each cart item and update the prices
+  cartItems.forEach((item) => {
+    const quantity = parseInt(item.querySelector('.Qty-input').value);
+    const priceElement = item.querySelector('.price');
+    const totalElement = item.querySelector('.total');
+    const price = parseFloat(priceElement.textContent.split(' ')[2]); // Extract the price from the text
+
+    if (!isNaN(quantity) && quantity >= 1) {
+      const total = price * quantity;
+      totalElement.textContent = `${total} rs`;
+    } else {
+      // Reset the quantity to 1 and set the total to the default price
+      item.querySelector('.Qty-input').value = 1;
+      totalElement.textContent = `${price} rs`;
+    }
+  });
+
+  // Calculate and update the cart total
+  calculateCartTotal();
+}
 
 
 
