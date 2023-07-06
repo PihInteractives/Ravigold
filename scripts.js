@@ -194,7 +194,12 @@ downloadButton.addEventListener('click', downloadScreenshot);
 
 function downloadScreenshot() {
   const cartPage = document.querySelector('.cart-page');
-
+  // Hide the elements that show price per single piece
+  const priceElements = cartPage.querySelectorAll('.price');
+  priceElements.forEach((element) => {
+    element.classList.add('hide-price');
+  });
+  
   // Generate the filename with timestamp
   const dateTime = new Date().toLocaleString('en-IN', {
     timeZone: 'Asia/Kolkata',
@@ -205,12 +210,16 @@ function downloadScreenshot() {
 
   // Add the "Ravi Gold works" heading and timestamp to the cart page
   const headingElement = document.createElement('h2');
-  headingElement.textContent = 'Ravi Gold works';
-  cartPage.insertBefore(headingElement, cartPage.firstChild);
+headingElement.textContent = 'Ravi Gold works';
+cartPage.insertBefore(headingElement, cartPage.firstChild);
 
-  const timestampElement = document.createElement('p');
-  timestampElement.textContent = dateTime;
-  cartPage.insertBefore(timestampElement, cartPage.firstChild);
+const timestampElement = document.createElement('p');
+timestampElement.textContent = dateTime;
+
+const lineElement = document.createElement('hr');
+
+cartPage.appendChild(lineElement);
+cartPage.appendChild(timestampElement);
 
   // Use html2canvas to capture the cart page as an image
   html2canvas(cartPage)

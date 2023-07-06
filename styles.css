@@ -123,3 +123,7 @@ input{
   width: 60px;
   margin-right:;
 }
+
+.hide-price{
+  display: none;
+}
