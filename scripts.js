@@ -132,14 +132,14 @@ function updateCartItemTotal(e) {
   const totalElement = cartItem.querySelector('.total');
   const price = parseFloat(priceElement.textContent.split(' ')[2]); // Extract the price from the text
 
-  if (isNaN(quantity) || quantity < 0) {
-    totalElement.textContent = 'Invalid total';
-  } else if (quantity === 0) {
-    totalElement.textContent = '0 rs';
-  } else {
-    const total = price * quantity;
-    totalElement.textContent = `${total} rs`;
+  
+  if (isNaN(quantity) || quantity < 1) {
+    e.target.value = 1; // Reset the quantity to 1
+    quantity = 1; // Update the quantity variable
   }
+
+  const total = price * quantity;
+  totalElement.textContent = `${total} rs`;
 
   calculateCartTotal();
 }
