@@ -1,3 +1,5 @@
+
+
 // Cart functionality
 const addToCartButtons = document.querySelectorAll('.add-to-cart');
 const cartItemsContainer = document.querySelector('.cart-items');
@@ -6,6 +8,17 @@ let cartTotal = 0;
 
 addToCartButtons.forEach((button) => {
   button.addEventListener('click', addToCart);
+
+addToCartButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    // Find the parent product column of the clicked button
+    const productColumn = button.closest('.product-column');
+
+    // Toggle the 'selected' class on the product column
+    productColumn.classList.toggle('selected');
+  });
+});
+
 });
 
 function addToCart(e) {
@@ -40,10 +53,16 @@ function getPriceByDesignNo(designNo) {
   // You can implement your logic here to fetch the price from a database or any other data source
   // For demonstration purposes, I'll use a simple mapping
   const priceMapping = {
-    '001': 0.50,
-    '002': 8,
-    '003': 3,
-    '004': 5,
+    '608': 40,
+    '609': 30,
+    '610': 20,
+    '611': 15,
+    '612':10,
+    '613':10,
+    '614':10,
+    '615':10,
+    '616':10,
+    '617':10,
     // Add more design numbers and prices as needed
   };
 
